@@ -5,12 +5,12 @@ import ISongProps from "../../utils/Interface"
 
 
 
-function SearchResults({props}: {props: ISongProps[]}){   
+function SearchResults({tracks}: {tracks: ISongProps[]}){   
     
     return (
         <div className="SearchResults">
             <h2>Results</h2>
-            <TrackList props={props}/>
+            <TrackList tracks={tracks}/>
         </div>
     )
 }

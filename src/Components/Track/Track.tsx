@@ -1,12 +1,11 @@
+import ISongProps from "../../utils/Interface"
 import "./Track.css"
 
-interface ITrackProps {
-    isRemoval: boolean
-}
 
-function Track(props: ITrackProps){
+function Track({track}: {track: ISongProps}){
+    
     const renderAction = () => {
-        if (props.isRemoval){
+        if (track.isRemoval){
             return <button className="Track-action">-</button>
         } else {
             return <button className="Track-action">+</button>
@@ -14,7 +13,12 @@ function Track(props: ITrackProps){
     }
 
     return (
-
+        <div className="Track"> 
+            <div className="Track-information">
+                <h3>{track.name}</h3>
+                <p>{track.artist} | {track.album}</p>
+            </div>
+        </div>
     )
 }
 
