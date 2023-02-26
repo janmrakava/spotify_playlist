@@ -3,6 +3,7 @@ import "./Track.css"
 
 
 function Track({track}: {track: ISongProps}){
+    const {name, artist, album} = track
     
     const renderAction = () => {
         if (track.isRemoval){
@@ -15,8 +16,8 @@ function Track({track}: {track: ISongProps}){
     return (
         <div className="Track"> 
             <div className="Track-information">
-                <h3>{track.name}</h3>
-                <p>{track.artist} | {track.album}</p>
+                <h3>{name}</h3>
+                <p>{artist} | {album}</p>
             </div>
         </div>
     )
