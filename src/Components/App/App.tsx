@@ -22,6 +22,7 @@ function App() {
   ])
 
   const [playlistName, setPlaylistName] = useState<string>('Default')
+  const [term, setTerm] = useState('')
 
   const [playlistTracks, setPlaylistTracks] = useState<Array<ISongProps>>([
     {name: "playlistName1", artist: "playlistArtist1", album:"playlistAlbum1", id: 4}
@@ -41,20 +42,38 @@ function App() {
   const removeTrack = (track: ISongProps) => {   
     setPlaylistTracks(prevState => prevState.filter(x => x.id !== track.id))
   }
-  
-  
-  
 
+  const updatePlaylistName = (name: string) => {
+    setPlaylistName(name)
+    console.log(playlistName)
+  }
+  
+  const savePlaylist = () => {
+    const trackURIs = playlistTracks.map(track => track.uri)
+  }
 
+ const changeTerm = (newTerm: string) => {
+    setTerm(newTerm)
+ }
 
+  const search = (searchTerm:string) => {
+    console.log(searchTerm)
+
+  }
   return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar />
+          <SearchBar onSearch={search} onChange={changeTerm}/>
           <div className="App-playlist">
             <SearchResults tracks={tracks} onAdd={addTrack}/>
-            <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTrack}/>
+            <Playlist 
+              playlistName={playlistName} 
+              playlistTracks={playlistTracks} 
+              onRemove={removeTrack} 
+              onNameChange={updatePlaylistName}
+              onSave={savePlaylist}  
+            />
          
           </div>
         </div>
