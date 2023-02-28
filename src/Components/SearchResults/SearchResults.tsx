@@ -11,12 +11,14 @@ interface SearchResultsProps {
 
 function SearchResults(props: SearchResultsProps){  
     const {tracks, onAdd} = props
+
+
     
-    onAdd({name: "playlistName4", artist: "playlistArtist4", album:"playlistAlbum5", id: 11})
+  
     return (    
         <div className="SearchResults">
             <h2>Results</h2>
-            <TrackList tracks={tracks}/>
+            <TrackList tracks={tracks} onAdd={onAdd} isRemoval={false}/>
         </div>
     )
 }

@@ -1,24 +1,46 @@
 import ISongProps from "../../utils/Interface"
 import "./Track.css"
 
+interface SearchResultsProps {
+    track: {
+        name: string,
+        album: string, 
+        artist: string,
+        id: number
+    },
+    onAdd?(track: ISongProps): void,
+    onRemove?(track: ISongProps): void,
+    isRemoval: boolean
+  }
 
-function Track({track}: {track: ISongProps}){
-    const {name, artist, album} = track
+
+function Track(props: SearchResultsProps){
+    const {track, onAdd, isRemoval, onRemove} = props
+
+    const addTrack = (track: ISongProps) => {
+        onAdd?.(track)
+    }
+    const removeTrack = (track: ISongProps) => {
+        onRemove?.(track)
+    }
     
+    
+
     const renderAction = () => {
-        if (track.isRemoval){
-            return <button className="Track-action">-</button>
+        if (isRemoval){
+            return <button className="Track-action" onClick={() => removeTrack(track)}>-</button>
         } else {
-            return <button className="Track-action">+</button>
+            return <button className="Track-action" onClick={()=> addTrack(track)}>+</button>
         }
     }
 
     return (
         <div className="Track"> 
             <div className="Track-information">
-                <h3>{name}</h3>
-                <p>{artist} | {album}</p>
+                <h3>{track.name}</h3>
+                <p>{track.artist} | {track.album}</p>
             </div>
+            {renderAction()}
         </div>
     )
 }

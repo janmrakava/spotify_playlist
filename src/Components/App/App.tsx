@@ -24,18 +24,22 @@ function App() {
   const [playlistName, setPlaylistName] = useState<string>('Default')
 
   const [playlistTracks, setPlaylistTracks] = useState<Array<ISongProps>>([
-    {name: "playlistName1", artist: "playlistArtist1", album:"playlistAlbum1", id: 4},
-    {name: "playlistName2", artist: "playlistArtist2", album:"playlistAlbum2", id: 5},
-    {name: "playlistName3", artist: "playlistArtist3", album:"playlistAlbum3", id: 6} 
+    {name: "playlistName1", artist: "playlistArtist1", album:"playlistAlbum1", id: 4}
   ])
     
   const addTrack = (track: ISongProps) => {
     const found = playlistTracks.some(el => el.id === track.id)
     if (!found){
-      playlistTracks.push(track)
+      setPlaylistTracks((prevPlaylist) => [
+        ...prevPlaylist, track
+      ])
     } else {
       console.log('Already here')
     }
+  }
+
+  const removeTrack = (track: ISongProps) => {   
+    setPlaylistTracks(prevState => prevState.filter(x => x.id !== track.id))
   }
   
   
@@ -50,7 +54,7 @@ function App() {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults tracks={tracks} onAdd={addTrack}/>
-            <Playlist playlistName={playlistName} playlistTracks={playlistTracks}/>
+            <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTrack}/>
          
           </div>
         </div>

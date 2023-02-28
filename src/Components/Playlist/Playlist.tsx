@@ -5,17 +5,19 @@ import ISongProps from "../../utils/Interface"
 
 interface IPlaylistAttributes{
     playlistTracks: ISongProps[],
-    playlistName: string
+    playlistName: string,
+    onRemove: (track: ISongProps) => void,
+    
 } 
 
 function Playlist(props: IPlaylistAttributes){
-    const {playlistName, playlistTracks} = props
+    const {playlistName, playlistTracks, onRemove} = props
     
    
     return (
         <div className="Playlist">
             <input defaultValue={"New Playlist"}/>
-            <TrackList tracks={playlistTracks}/>
+            <TrackList tracks={playlistTracks} isRemoval={true} onRemove={onRemove}/> 
             <button className="Playlist-save">SAVE TO SPOTIFY</button>
         </div>
     )
