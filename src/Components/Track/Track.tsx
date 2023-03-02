@@ -6,7 +6,8 @@ interface SearchResultsProps {
         name: string,
         album: string, 
         artist: string,
-        id: number
+        id: number,
+        uri: string
     },
     onAdd?(track: ISongProps): void,
     onRemove?(track: ISongProps): void,
