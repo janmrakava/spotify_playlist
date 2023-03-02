@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchResults from '../SearchResults/SearchResults'
@@ -16,6 +16,10 @@ interface IPlaylistAttributes{
 
 function App() {
 
+
+  useEffect(() => {
+    Spotify.getAccesToken()
+  })
  
   const [tracks, setTracks] = useState<Array<ISongProps>>([])
 
@@ -57,6 +61,7 @@ function App() {
  }
 
   const search = (searchTerm:string) => {
+
     Spotify.search(searchTerm).then(searchResults => {
       setTracks(searchResults)
     })

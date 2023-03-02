@@ -6,25 +6,25 @@ interface ISearchBarProps{
     term: string
 }
 
-
-
-
 function SearchBar(props: ISearchBarProps){
     const {onSearch, onChange, term} = props
 
     const search = () => {
-        
-        onSearch(term)
+        event?.preventDefault()
+         onSearch(term)
         
     }
     const handleTermChange = (event: React.FormEvent<HTMLInputElement>) =>{
-        onChange(event.currentTarget.value)
+        onChange(event.currentTarget.value) 
    }
+   
+ 
     return (
-        <div className="SearchBar">
-            <input placeholder="Enter A Song, Album, or Artist" onChange={handleTermChange}/>
-            <button className="SearchButton" onClick={() => search()} type="button">SEARCH</button>
-        </div>    )
+        <div className="SearchBar">            
+                <input placeholder="Enter A Song, Album, or Artist" onChange={handleTermChange}/>
+                <button className="SearchButton" type="button" onClick={search}>SEARCH</button>
+        </div>   
+         )
 }
 
 export default SearchBar
